@@ -14,11 +14,11 @@ QuadNLP::~QuadNLP()
 //get NLP info such as number of variables and constraints
 bool QuadNLP::get_nlp_info(Index& n, Index& m, Index& nnz_jac_g, Index& nnz_h_lag, IndexStyleEnum& index_style)
 {
-	n=numVars;
-	m=numConstr;
-	nnz_jac_g = n*m;
-	nnz_h_lag = n*(n+1)/2;
-	index_style=C_STYLE;
+	n=numVars; // Number of variables
+	m=numConstr; // Number of constraints
+	nnz_jac_g = n*m; // No. of elements in Jacobian of constraints 
+	nnz_h_lag = n*(n+1)/2; // No. of elements in lower traingle of Hessian of the Lagrangian.
+	index_style=C_STYLE; // Index style of matrices
 	return true;
 }
 
@@ -26,16 +26,14 @@ bool QuadNLP::get_nlp_info(Index& n, Index& m, Index& nnz_jac_g, Index& nnz_h_la
 bool QuadNLP::get_bounds_info(Index n, Number* x_l, Number* x_u, Index m, Number* g_l, Number* g_u)
 {
 	unsigned int i;
-	for(i=0;i<n;i++)
-	{
+	for(i=0;i<n;i++){
 		x_l[i]=varLB[i];
 		x_u[i]=varUB[i];
-	}
-	for(i=0;i<m;i++)
-	{
+		}
+	for(i=0;i<m;i++){
 		g_l[i]=conLB[i];
 		g_u[i]=conUB[i];
-	}
+		}
 	return true;
 }
 
@@ -140,7 +138,31 @@ void QuadNLP::finalize_solution(SolverReturn status,
 									   const IpoptData* ip_data,
 									   IpoptCalculatedQuantities* ip_cq){
 
-	sciprint("\nSolved::\n");
-	for (int var=0;var<n;++var)sciprint("%f\n",x[var]);
+	// Display result of the problem to user.
+	sciprint("\nProblem solved::\n");
+	
+	sciprint("Solution of the primal variables::\n");
+ 	 for (Index i=0; i<n; i++) {
+    		 sciprint("x[%d] == %lf\n",i+1,x[i]);
+ 		 }
+
+
+	sciprint("Solution of the bound multipliers, z_L and z_U::\n");
+  	for (Index i=0; i<n; i++) {
+   		sciprint("z_L[%d] = %lf\n",i+1, z_L[i]);
+ 		 }
+	 for (Index i=0; i<n; i++) {
+    		sciprint("z_U[%d] = %lf\n",i+1, z_U[i]);
+  		}
+
+	sciprint("\nObjective value::\n");
+
+	sciprint("f(x*) = %lf\n",obj_value);
+
+ 	sciprint("Final value of the constraints::\n");
+	for (Index i=0; i<m ;i++) {
+  		sciprint( "g(%d) = %lf",i+1, g[i]);
+  		}
+
 	}
 
