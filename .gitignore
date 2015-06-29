@@ -1,0 +1,14 @@
+# Scilab generates these by itself
+cleaner.sce
+loader.sce
+libqptoolbox.c
+
+# Libraries
+*.so
+
+# gedit temporary files
+*~
+
+# Other
+*.pdf
+*.gz
