@@ -16,8 +16,8 @@ bool QuadNLP::get_nlp_info(Index& n, Index& m, Index& nnz_jac_g, Index& nnz_h_la
 {
 	n=numVars;
 	m=numConstr;
-	nnz_jac_g=n*m;
-	/*TODO*/ //nnz_h_lag=;
+	nnz_jac_g = n*m;
+	nnz_h_lag = n*(n+1)/2;
 	index_style=C_STYLE;
 	return true;
 }
@@ -46,22 +46,12 @@ bool QuadNLP::eval_f(Index n, const Number* x, bool new_x, Number& obj_value)
 	Number temp;
 	obj_value=0;
 
-	obj_value = -8*x[0]-16*x[1]+x[0]*x[0]+4*x[1]*x[1];
-	/*for(i=0;i<n;i++)
-	{
-		//temp will contain product of x and ith column of qMatrix
-		temp=0;
-		for(j=0;j<n;j++)
-			temp+=x[j]*qMatrix[n*j+i];
-		//multiply temp/2 (as per definition) and linear component to x and add to objective value
-		obj_value+=((temp/2)+lMatrix[i])*x[i];
-	}
 	for (i=0;i<n;++i){
 		for (j=0;j<n;++j){
 			obj_value+=x[i]*x[j]*qMatrix[n*i+j];			
 			}
 		obj_value+=x[i]*lMatrix[i];
-		}*/
+		}
 	return true;
 }
 

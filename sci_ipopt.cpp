@@ -56,23 +56,53 @@ int loadProblem(char *fname,unsigned long len ){
 	getIntFromScilab(2,&nCons);
 	
 	QItems = new double[nVars*nVars];
-	ConItems = new double[nCons*nVars];
+	/*ConItems = new double[nCons*nVars];
 	PItems = new double[nVars];
 	conUB = new double[nCons];
 	conLB = new double[nCons];
 	varUB = new double[nVars];
-	varLB = new double[nVars];
+	varLB = new double[nVars];*/
 
-	getFixedSizeDoubleMatrixFromScilab(3,nVars,nVars,&QItems);
-	getFixedSizeDoubleMatrixFromScilab(4,1,nVars,&PItems);
-	getFixedSizeDoubleMatrixFromScilab(5,nCons,nVars,&ConItems);
-	getFixedSizeDoubleMatrixFromScilab(6,1,nCons,&conLB);
-	getFixedSizeDoubleMatrixFromScilab(7,1,nCons,&conUB);
-	getFixedSizeDoubleMatrixFromScilab(8,1,nVars,&varLB);
-	getFixedSizeDoubleMatrixFromScilab(9,1,nVars,&varUB);
+//	double *ConItems=NULL;
+	int temp1,temp2;
+	getDoubleMatrixFromScilab(3,&temp1,&temp2,&QItems);
+	if (temp1 != nVars && temp2 != nVars){
+		sciprint("Error:: Argument 3\n");
+		returnDoubleToScilab(1.0);return 1;
+		}
+	getDoubleMatrixFromScilab(4,&temp1,&temp2,&PItems);
+	if (temp2 != nVars){
+		sciprint("Error:: Argument 4\n");
+		returnDoubleToScilab(1.0);return 1;
+		}
+	getDoubleMatrixFromScilab(5,&temp1,&temp2,&ConItems);
+	if (temp1 != nCons && temp2 != nCons){
+		sciprint("Error:: Argument 5\n");
+		returnDoubleToScilab(1.0);return 1;
+		}
+	getDoubleMatrixFromScilab(6,&temp1,&temp2,&conLB);
+	if ( temp2 != nCons){
+		sciprint("Error:: Argument 6\n");
+		returnDoubleToScilab(1.0);return 1;
+		}
+	getDoubleMatrixFromScilab(7,&temp1,&temp2,&conUB);
+	if ( temp2 != nCons){
+		sciprint("Error:: Argument 7\n");
+		returnDoubleToScilab(1.0);return 1;
+		}
+	getDoubleMatrixFromScilab(8,&temp1,&temp2,&varLB);
+	if ( temp2 != nVars){
+		sciprint("Error:: Argument 8\n");
+		returnDoubleToScilab(1.0);return 1;
+		}
+	getDoubleMatrixFromScilab(9,&temp1,&temp2,&varUB);
+	if ( temp2 != nVars){
+		sciprint("Error:: Argument 9\n");
+		returnDoubleToScilab(1.0);return 1;
+		}
 	
-	for (int var=0;var<nVars*nVars;++var){
-		sciprint("%f\n",QItems[var]);
+	for (int var=0;var < nVars;++var){
+		sciprint("%f\n",ConItems[var]);
 		}
 		
 	using namespace Ipopt;
