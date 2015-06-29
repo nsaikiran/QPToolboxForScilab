@@ -19,7 +19,12 @@ class QuadNLP : public TNLP
 		QuadNLP& operator=(const QuadNLP&);
 	public:
 		QuadNLP(Index nV, Index nC, Number *qM, Number *lM, Number *cM, Number *cUB, Number *cLB, Number *vUB, Number *vLB):
-			numVars(nV),numConstr(nC),qMatrix(qM),lMatrix(lM),conMatrix(cM),conUB(cUB),conLB(cLB),varUB(vUB),varLB(vLB){sciprint("Created");}
+			numVars(nV),numConstr(nC),qMatrix(qM),lMatrix(lM),conMatrix(cM),conUB(cUB),conLB(cLB),varUB(vUB),varLB(vLB){
+
+			sciprint("\nProblem Loaded\n");
+			
+			}
+	
 		virtual ~QuadNLP();
 		virtual bool get_nlp_info(Index& n, Index& m, Index& nnz_jac_g,
 								  Index& nnz_h_lag, IndexStyleEnum& index_style);
