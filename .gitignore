@@ -12,3 +12,4 @@ libqptoolbox.c
 # Other
 *.pdf
 *.gz
+*.out
