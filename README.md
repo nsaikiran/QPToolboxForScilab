@@ -24,9 +24,9 @@
 2. Just go to toolbox directory and run `exec loader.sce`.(No need to run `exec builder.sce`)
 3. You can call `solveQpprob` with necessary arguments to solve a problem.  
    E.g.   
-       *min* `x'Qx`+`P'`*`x`  
+       *min* `x'`*`Q`*`x`+`P'`*`x`  
         s.t  
-         `cL'` <= `Cx'` <= `cU'`     
+         `cL'` <= `C`*`x'` <= `cU'`     
          `xL` <= `x'` <= `xU`  
          
        Here, `x` is a *column-vector* of variables.   
