@@ -1,3 +1,12 @@
+/*
+ * Quadratic Programming Toolbox for Scilab using IPOPT library
+ * Authors :
+	Sai Kiran
+	Keyur Joshi
+	Iswarya
+ */
+
+
 #include "sci_iofunc.hpp"
 #include "IpIpoptApplication.hpp"
 #include "QuadNLP.hpp"
@@ -41,15 +50,9 @@ int loadProblem(char *fname,unsigned long len ){
 	CheckInputArgument(pvApiCtx, 9, 9); // We need total 9 input arguments.
 	CheckOutputArgument(pvApiCtx, 1, 1); // Return value will be termination status (0 for no-errors and 1/non-zero for errors)
 
-	//bool status;
-	/*int nQRows,nQCols,nQItems,*nQItemsPerRow=NULL,*QItemColPosition=NULL,
-		*conMatrix=NULL,*conUB=NULL,*conLB=NULL,*varUB=NULL,*varLB=NULL;*/
-
 
 	double *QItems=NULL,*PItems=NULL,*ConItems=NULL,*conUB=NULL,*conLB=NULL,*varUB=NULL,*varLB=NULL;
 	unsigned int nVars,nCons;
-
-	//status=readSparse(1,&nQRows,&nQCols,&nQItems,&nQItemsPerRow,&QItemColPosition,&QItems);	
 
 
 	unsigned int arg = 1,temp1,temp2;
@@ -76,6 +79,15 @@ int loadProblem(char *fname,unsigned long len ){
 		app->Options()->SetNumericValue("tol", 1e-7);
 		app->Options()->SetStringValue("mu_strategy", "adaptive");
 		app->Options()->SetStringValue("output_file", "ipopt.out");
+
+		// Indicates whether all equality constraints are linear 
+		app->Options()->SetStringValue("jac_c_constant", "yes");
+		// Indicates whether all inequality constraints are linear 
+		app->Options()->SetStringValue("jac_d_constant", "yes");	
+		// Indicates whether the problem is a quadratic problem 
+		app->Options()->SetStringValue("hessian_constant", "yes");
+
+
 		// The following overwrites the default name (ipopt.opt) of the
 		// options file
 		// app->Options()->SetStringValue("option_file_name", "hs071.opt");
@@ -115,3 +127,16 @@ int loadProblem(char *fname,unsigned long len ){
 	}
 
 }
+
+/*
+hessian_constan
+jacobian _constant
+
+j_s_d constant : yes
+*/
+//Automatic differentiation
+//qtest Individual test 
+//CUTE classification.
+//HS problems. HS351
+
+

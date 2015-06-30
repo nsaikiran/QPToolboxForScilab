@@ -1,3 +1,18 @@
+// Quadratic Programming Toolbox for Scailab.
+// Authors ::
+//			Sai Kiran
+//			Keyur Joshi
+//			Iswarya
+
+
+// Location of header files of IPOPT
+INCLUDE_PATH = "/home/saikiran/Ipopt-3.12.3/include/coin"
+// Location of libraries
+LIBRARIES_PATH = "/home/saikiran/Ipopt-3.12.3/lib"
+//g++ compiler (you can specify the version)
+gpp = "g++"
+
+
 mode(-1)
 lines(0)
 
@@ -7,7 +22,7 @@ toolbox_title = "qptoolbox"
 
 tbx_build_gateway(toolbox_title, ..
 	[
-	 "loadQpprob","loadProblem";
+	 "solveQpprob","loadProblem";
 	],..
 	[
 	"sci_iofunc.hpp";
@@ -16,7 +31,9 @@ tbx_build_gateway(toolbox_title, ..
 	"sci_ipopt.cpp";
 	"sci_iofunc.cpp";
 	],..
-	get_absolute_file_path("builder.sce"), [], ["-lipopt"], ["-w -fpermissive -I/home/saikiran/Ipopt-3.12.3/include/coin -L/home/saikiran/Ipopt-3.12.3/lib -Wl,-rpath=/home/saikiran/Ipopt-3.12.3/lib -lipopt -lm -ldl"], [], "g++");
+	get_absolute_file_path("builder.sce"), [], ["-lipopt"], ["-w -fpermissive -I"+INCLUDE_PATH+" -L"+LIBRARIES_PATH+" -Wl,-rpath="+LIBRARIES_PATH+" -lipopt"], [], gpp);
 
 
-clear WITHOUT_AUTO_PUTLHSVAR toolbox_title LINKER_FLAGS;
+clear WITHOUT_AUTO_PUTLHSVAR toolbox_title INCLUDE_PATH LIBRARIES_PATH gpp;
+
+

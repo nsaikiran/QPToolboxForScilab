@@ -1,5 +1,14 @@
-//Made by Keyur Joshi
-//Using cpp_example template provided with IPOPT
+/*
+ * Quadratic Programming Toolbox for Scilab using IPOPT library
+ * Authors :
+	Sai Kiran
+	Keyur Joshi
+	Iswarya
+
+
+ * Optimizing (minimizing) the quadratic objective function having any number of variables and linear constraints.
+ *
+*/
 
 #ifndef __QuadNLP_HPP__
 #define __QuadNLP_HPP__
@@ -13,18 +22,32 @@ using namespace Ipopt;
 class QuadNLP : public TNLP
 {
 	private:
-		Index numVars,numConstr;
-		Number *qMatrix,*lMatrix,*conMatrix,*conUB,*conLB,*varUB,*varLB;
+		Index numVars,numConstr; // Number of variables and constraints
+		/*
+		 * qMatrix is a pointer to matrix of size numVars X numVars with coefficents of quadratic terms in objective function.
+		 * lMatrix is a pointer to matrix of size 1*numVars with coefficents of linear terms in objective function.
+		 * conMatrix is a pointer to matrix of size numConstrXnumVars with coefficients of terms in a each objective in each row.
+		 * conUB is a pointer to a matrix of size of 1*numConstr with upper bounds of all constraints.
+		 * con
+		*/
+		Number *qMatrix,*lMatrix,*conMatrix,*conUB,*conLB,*varUB,*varLB; 
 		QuadNLP(const QuadNLP&);
 		QuadNLP& operator=(const QuadNLP&);
 	public:
+		/*
+		 * Constructor 
+		*/
 		QuadNLP(Index nV, Index nC, Number *qM, Number *lM, Number *cM, Number *cUB, Number *cLB, Number *vUB, Number *vLB):
 			numVars(nV),numConstr(nC),qMatrix(qM),lMatrix(lM),conMatrix(cM),conUB(cUB),conLB(cLB),varUB(vUB),varLB(vLB){
 
 			sciprint("\nProblem Loaded\n");
 			
 			}
-	
+		/* Go to :
+
+	http://www.coin-or.org/Ipopt/documentation/node23.html#SECTION00053130000000000000
+		For details about these below methods.
+		*/
 		virtual ~QuadNLP();
 		virtual bool get_nlp_info(Index& n, Index& m, Index& nnz_jac_g,
 								  Index& nnz_h_lag, IndexStyleEnum& index_style);
