@@ -17,7 +17,7 @@
 9. If you got any *errors* ,please make sure that you followed step **3** and **4**.
 10. Execute `exec loader.sce` in **Scilab**.
 11. If you got any *errors* ,please make sure that you followed step **3** and **4**.
-12. If you successfully completed this far, your installation is successful.
+12. If you successfully completed this far, your installation is successful.    
 
 ## To Use ::
 1. Whenever you want to use this *toolbox*.
