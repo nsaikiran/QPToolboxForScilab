@@ -39,6 +39,7 @@
              `xL` and `xU` are *row-vectors* of lower & upper bounds of all variables .  
 
 4. `solveQpprob(n,m,Q,P,C,cL,cU,xL,xU)` will solves and prints the result on Scilab console.
+5. You can refer `testScript.sce` for examples and run `exec testScript.sce` to test those examples.
 
 ## Help ::
 
