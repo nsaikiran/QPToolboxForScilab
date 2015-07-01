@@ -200,7 +200,7 @@ void QuadNLP::finalize_solution(SolverReturn status,
 
  	sciprint("Final value of the constraints::\n");
 	for (Index i=0; i<m ;i++) {
-  		sciprint( "g(%d) = %lf",i+1, g[i]);
+  		sciprint( "g(%d) = %lf\n",i+1, g[i]);
   		}
 
 	}
