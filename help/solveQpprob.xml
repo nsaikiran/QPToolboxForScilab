@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="solveQpprob" xml:lang="en"
+					xmlns="http://docbook.org/ns/docbook"
+					xmlns:xlink="http://www.w3.org/1999/xlink"
+					xmlns:svg="http://www.w3.org/2000/svg"
+					xmlns:ns3="http://www.w3.org/1999/xhtml"
+					xmlns:mml="http://www.w3.org/1998/Math/MathML"
+					xmlns:db="http://docbook.org/ns/docbook">
+
+	<refnamediv>
+		<refname>solveQpprob</refname>
+		<refpurpose>Load and solve a problem using IPOPT</refpurpose>
+	</refnamediv>
+
+	<refsynopsisdiv>
+		<title>Calling Sequence</title>
+		<synopsis>solveQpprob(n,m,Q,P,C,cL,cU,xL,xU)</synopsis>
+	</refsynopsisdiv>
+
+	<refsection>
+		<title>Description</title>
+
+		<para>Loads a QP problem into IPOPT, solves it, and then prints information about the solution.</para>
+
+	</refsection>
+
+	<refsection>
+		<title>Arguments</title>
+
+		<variablelist>
+			<varlistentry>
+				<term>n</term>
+				<listitem><para>Number of variables</para></listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>m</term>
+				<listitem><para>Number of constraints</para></listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>Q</term>
+				<listitem><para>n by n matrix containing coefficients of second order terms in objective</para></listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>P</term>
+				<listitem><para>Row matrix containing the coefficients of the linear terms in the objective</para></listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>C</term>
+				<listitem><para>m by n matrix containing coefficients of variables in the constraints</para></listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>cL</term>
+				<listitem><para>Row matrix containing lower bounds of the constraints</para></listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>cU</term>
+				<listitem><para>Row matrix containing upper bounds of the constraints</para></listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>xL</term>
+				<listitem><para>Row matrix containing lower bounds of the variables</para></listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>xU</term>
+				<listitem><para>Row matrix containing upper bounds of the variables</para></listitem>
+			</varlistentry>
+		</variablelist>
+
+	</refsection>
+
+	<refsection>
+		<title>Return value</title>
+		
+		<para>Returns 0 if the problem was successfully loaded into IPOPT and 1 if there was an error.</para>
+
+	</refsection>
+
+	<refsection>
+		<title>Examples</title>
+
+		<programlisting role="example">solveQpprob(3,0,[2.50,-2,-1;0,2,3;0,0,2.50],[2,-35,-47],[],[],[],[0,0,0],[2e19,2e19,2e19])</programlisting>
+
+	</refsection>
+
+	<refsection>
+		<title>Authors</title>
+
+		<simplelist type="vert">
+			<member>Sai Kiran</member>
+
+		</simplelist>
+	</refsection>
+</refentry>
